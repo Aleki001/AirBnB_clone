@@ -3,10 +3,13 @@
 """ AirBnB console """
 
 import cmd
+from models import storage
+from models.base_model import BaseModel
 
 class HBNBCommand(cmd.Cmd):
     """Enables commandline interpretter """
     prompt = "(hbnb) "
+    __classes = {"BaseModel", "User"}
 
     def do_quit(self, arg):
         """Quit command to exit the program """
@@ -21,7 +24,7 @@ class HBNBCommand(cmd.Cmd):
         """Usage: create <class>
         Create a new class instance and print its id.
         """
-        argl = parse(arg)
+        argl = arg.split(" ")
         if len(argl) == 0:
             print("** class name missing **")
         elif argl[0] not in HBNBCommand.__classes:
@@ -35,7 +38,7 @@ class HBNBCommand(cmd.Cmd):
         """Usage: show <class> <id> or <class>.show(<id>)
         Display the string representation of a class instance of a given id.
         """
-        argl = parse(arg)
+        argl = arg.split(" ")
         objdict = storage.all()
         if len(argl) == 0:
             print("** class name missing **")
@@ -52,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
         """Usage: all or all <class> or <class>.all()
         Display string representations of all instances of a given class.
         If no class is specified, displays all instantiated objects."""
-        argl = parse(arg)
+        argl = arg.split(" ")
         if len(argl) > 0 and argl[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
@@ -70,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
        <class>.update(<id>, <dictionary>)
         Update a class instance of a given id by adding or updating
         a given attribute key/value pair or dictionary."""
-        argl = parse(arg)
+        argl = arg.split(" ")
         objdict = storage.all()
 
         if len(argl) == 0:
@@ -116,7 +119,7 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, arg):
         """Usage: destroy <class> <id> or <class>.destroy(<id>)
         Delete a class instance of a given id."""
-        argl = parse(arg)
+        argl = arg.split(" ")
         objdict = storage.all()
         if len(argl) == 0:
             print("** class name missing **")
