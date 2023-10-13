@@ -26,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
         Create a new class instance and print its id.
         """
         argl = arg.split(" ")
-        if len(argl) == 0:
+        if arg == "" or arg is None:
             print("** class name missing **")
         elif argl[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
@@ -41,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
         """
         argl = arg.split(" ")
         objdict = storage.all()
-        if len(argl) == 0:
+        if arg == "" or arg is None:
             print("** class name missing **")
         elif argl[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
@@ -77,7 +77,7 @@ class HBNBCommand(cmd.Cmd):
         argl = arg.split(" ")
         objdict = storage.all()
 
-        if len(argl) == 0:
+        if arg == "" or arg is None:
             print("** class name missing **")
             return False
         if argl[0] not in HBNBCommand.__classes:
@@ -122,7 +122,7 @@ class HBNBCommand(cmd.Cmd):
         Delete a class instance of a given id."""
         argl = arg.split(" ")
         objdict = storage.all()
-        if len(argl) == 0:
+        if arg == "" or arg is None:
             print("** class name missing **")
         elif argl[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
