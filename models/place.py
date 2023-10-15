@@ -4,6 +4,7 @@
 
 from models.base_model import BaseModel
 
+
 class Place(BaseModel):
     """Represent Place
     Attributes:
@@ -18,7 +19,7 @@ class Place(BaseModel):
         latitude (float): latitude of place
         longitude (float): longitude of place
         amenity_ids (list): amenity ids"""
-    
+
     city_id = ""
     user_id = ""
     name = ""

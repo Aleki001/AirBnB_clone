@@ -6,6 +6,7 @@ import uuid
 from datetime import datetime
 import models
 
+
 class BaseModel():
     """ defines common attributes and methods in other classes"""
     def __init__(self, *args, **kwargs):
@@ -21,18 +22,20 @@ class BaseModel():
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
-                    setattr(self, key, datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                    setattr(self, key, datetime
+                            .strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
                 elif key != "__class__":
                     setattr(self, key, value)
         else:
-            self.id =str(uuid.uuid4())
+            self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
             models.storage.new(self)
 
     def __str__(self):
         """ returns stringrepresentation of the object """
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(self.__class__.__name__,
+                                     self.id, self.__dict__)
 
     def save(self):
         """ updates updated time with current time"""
@@ -43,7 +46,7 @@ class BaseModel():
         """ returns dictionary representation of the object"""
         dict_formed = {}
         dict_formed["__class__"] = self.__class__.__name__
-        
+
         for key, value in self.__dict__.items():
             if isinstance(value, datetime):
                 dict_formed[key] = value.isoformat()

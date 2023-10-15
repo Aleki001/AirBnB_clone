@@ -40,9 +40,9 @@ class HBNBCommand(cmd.Cmd):
     """Enables commandline interpretter
     Attributes:
         prompt: the command prompt"""
-    
     prompt = "(hbnb) "
-    __classes = {"BaseModel", "User", "Place", "State", "City", "Amenity", "Review"}
+    __classes = {"BaseModel", "User", "Place", "State",
+                 "City", "Amenity", "Review"}
 
     def do_quit(self, arg):
         """Quit command to exit the program."""
@@ -52,7 +52,7 @@ class HBNBCommand(cmd.Cmd):
         """Exits the program on ctrl + D """
         print("")
         return True
-    
+
     def emptyline(self):
         """Do nothing upon receiving an empty line."""
         pass
@@ -68,7 +68,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             print(eval(argl[0])().id)
             storage.save()
-        
 
     def do_show(self, arg):
         """Display the string representation of a class instance of a given id.
@@ -85,7 +84,6 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
         else:
             print(objdict["{}.{}".format(argl[0], argl[1])])
-
 
     def do_all(self, arg):
         """Display string representations of all instances of a given class.
@@ -193,6 +191,7 @@ class HBNBCommand(cmd.Cmd):
                     return argdict[command[0]](call)
         print("*** Unknown syntax: {}".format(arg))
         return False
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

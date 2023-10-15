@@ -4,9 +4,10 @@
 
 from models.base_model import BaseModel
 
+
 class State(BaseModel):
     """Represent State
     Attributes:
         name (str): name of state"""
-    
+
     name = ""
